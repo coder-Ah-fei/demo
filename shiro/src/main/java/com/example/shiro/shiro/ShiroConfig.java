@@ -124,7 +124,8 @@ public class ShiroConfig {
 
         redisManager.setHost("localhost");
         redisManager.setPort(6379);
-        redisManager.setExpire(5);// 配置缓存过期时间
+        // 配置缓存过期时间
+        redisManager.setExpire(5);
         redisManager.setTimeout(0);
 
 

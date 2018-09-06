@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="demo" />
         <module name="shiro" />
+        <module name="table-create-pojo" />
       </profile>
     </annotationProcessing>
   </component>
