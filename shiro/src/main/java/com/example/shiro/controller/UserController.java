@@ -19,7 +19,6 @@ public class UserController {
     @ResponseBody
     public List<User> getUserInfo() {
         List<User> users = userService.getUserInfo();
-        System.out.println(users.toString());
         return users;
     }
 
