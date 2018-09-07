@@ -29,9 +29,9 @@ public class MyRealm extends AuthorizingRealm {
 		user = userService.getUserByName(user.getName());
 		roles.add(user.getRolename());
 		authorizationInfo.setRoles(roles);
-		        // authorizationInfo.setStringPermissions(loginService.findPermissions(logincode));  
-		         //roles.add("user");
-		         //authorizationInfo.addRoles(roles);
+		Set<String> perms = new LinkedHashSet<>();
+//		perms.add("访问user的权限");
+	 	authorizationInfo.setStringPermissions(perms);
 		return authorizationInfo;
 	}
 

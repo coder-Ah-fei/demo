@@ -15,7 +15,7 @@ public class MyLogOutFilter extends LogoutFilter {
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
         Subject subject = this.getSubject(request, response);
-        if (this.isPostOnlyLogout() && !WebUtils.toHttp(request).getMethod().toUpperCase(Locale.ENGLISH).equals("POST")) {
+        if (this.isPostOnlyLogout() && !"POST".equals(WebUtils.toHttp(request).getMethod().toUpperCase(Locale.ENGLISH))) {
             return this.onLogoutRequestNotAPost(request, response);
         } else {
 
