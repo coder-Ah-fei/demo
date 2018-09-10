@@ -20,7 +20,7 @@ import java.util.Map;
 
 @Configuration
 public class ShiroConfig {
- 
+
 //    @Value("${spring.redis.shiro.host}")
 //    private String host;
 //    @Value("${spring.redis.shiro.port}")
@@ -29,7 +29,7 @@ public class ShiroConfig {
 //    private int timeout;
 //    @Value("${spring.redis.shiro.password}")
 //    private String password;
- 
+
     @Bean
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         System.out.println("ShiroConfiguration.shirFilter()");
@@ -43,7 +43,7 @@ public class ShiroConfig {
         filterMap.put("roles", new MyRolesFilter());
         filterMap.put("logout", new MyLogOutFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
- 
+
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         //注意过滤器配置顺序 不能颠倒
         //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了，登出后跳转配置的loginUrl
@@ -62,7 +62,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
- 
+
     /**
      * 凭证匹配器
      * （由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了
@@ -79,15 +79,15 @@ public class ShiroConfig {
         hashedCredentialsMatcher.setHashIterations(2);
         return hashedCredentialsMatcher;
     }
- 
+
     @Bean
     public MyRealm myRealm() {
         MyRealm myRealm = new MyRealm();
         myRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return myRealm;
     }
- 
- 
+
+
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
@@ -98,7 +98,7 @@ public class ShiroConfig {
         securityManager.setCacheManager(cacheManager());
         return securityManager;
     }
- 
+
     //自定义sessionManager
     @Bean
     public SessionManager sessionManager() {
@@ -106,7 +106,7 @@ public class ShiroConfig {
         mySessionManager.setSessionDAO(redisSessionDAO());
         return mySessionManager;
     }
- 
+
     /**
      * 配置shiro redisManager
      * <p>
@@ -132,7 +132,7 @@ public class ShiroConfig {
 
         return redisManager;
     }
- 
+
     /**
      * cacheManager 缓存 redis实现
      * <p>
@@ -146,7 +146,7 @@ public class ShiroConfig {
         redisCacheManager.setRedisManager(redisManager());
         return redisCacheManager;
     }
- 
+
     /**
      * RedisSessionDAO shiro sessionDao层的实现 通过redis
      * <p>
@@ -158,7 +158,7 @@ public class ShiroConfig {
         redisSessionDAO.setRedisManager(redisManager());
         return redisSessionDAO;
     }
- 
+
     /**
      * 开启shiro aop注解支持.
      * 使用代理方式;所以需要开启代码支持;
@@ -172,7 +172,7 @@ public class ShiroConfig {
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
     }
- 
+
     /**
      * 注册全局异常处理
      * @return

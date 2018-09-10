@@ -1,0 +1,10 @@
+#server:
+#  port: 8890
+#spring:
+#  application:
+#    name: shiro
+#  cloud:
+#    config:
+#      profile: dev
+#      uri: http://localhost:8888
+#      label: master

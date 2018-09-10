@@ -30,7 +30,7 @@ public class MyRealm extends AuthorizingRealm {
 		roles.add(user.getRolename());
 		authorizationInfo.setRoles(roles);
 		Set<String> perms = new LinkedHashSet<>();
-//		perms.add("访问user的权限");
+		perms.add("访问user的权限");
 	 	authorizationInfo.setStringPermissions(perms);
 		return authorizationInfo;
 	}
